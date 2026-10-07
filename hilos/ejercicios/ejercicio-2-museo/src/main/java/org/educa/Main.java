@@ -27,8 +27,17 @@ public class Main {
             h2.join();
             h3.join();
             h4.join();
+
+            System.out.println(calcularTiempoMedio(v1, v2, v3, v4));
         }catch (InterruptedException e){
             System.out.println(e.getMessage());
         }
+
+    }
+
+    public static long calcularTiempoMedio(Visitante v1, Visitante v2, Visitante v3, Visitante v4){
+        long tiempoMedio=0;
+        tiempoMedio=(v1.getTiempo() + v2.getTiempo() + v3.getTiempo() + v4.getTiempo())/4;
+        return tiempoMedio;
     }
 }
