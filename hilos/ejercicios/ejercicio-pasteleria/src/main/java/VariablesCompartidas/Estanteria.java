@@ -10,7 +10,7 @@ public class Estanteria {
     }
 
     public int getPasteles(){return pasteles;}
-    public int getServidos(){return pasteles;}
+    public int getServidos(){return servidos;}
 
     public void setPasteles(int pasteles) {this.pasteles = pasteles;}
     public void setServidos(int servidos) {this.servidos = servidos;}

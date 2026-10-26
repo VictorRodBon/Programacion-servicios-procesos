@@ -16,25 +16,38 @@ public class Main {
     * Cuando se vendan 12 tartas se termina el bloqueo.
     *
     * Pastelero: if pasteles == 5 aquire
-    * Pastelero: if pasteles == 5 aquire
+    *
+    * Camarero: si estanteria llena y quito un pastel -> desbloqueo cocinero
+    * Cocinero: si estantería vacia y añado un pastel -> desbloqueo camarero
     *
     * */
 
     public static void main(String[] args) {
-        Estanteria estanteria = new Estanteria(0,0);
+        Estanteria beamEstanteria = new Estanteria(0,0);
 
         Semaphore semaphoreEstanteria = new Semaphore(1);
-        Semaphore semaphoreCocinero = new Semaphore(0);
+
+        Semaphore semaphoreCocinero = new Semaphore(5);
+
         Semaphore semaphoreCamarero = new Semaphore(0);
 
         // creamos el hilo cocinero
-        HiloCocinero cocinero = new HiloCocinero(estanteria, semaphoreCocinero);
+        HiloCocinero cocinero = new HiloCocinero(beamEstanteria, semaphoreCocinero, semaphoreEstanteria, semaphoreCamarero);
         // creamos el hilo camarero
-        HiloCamarero camarero = new HiloCamarero(estanteria, semaphoreCamarero);
+        HiloCamarero camarero = new HiloCamarero(beamEstanteria, semaphoreCamarero, semaphoreEstanteria, semaphoreCocinero);
 
         // empezamos el hilo cocinero
         cocinero.start();
         // empezamos el hilo camarero
         camarero.start();
+
+        try{
+            cocinero.join();
+            camarero.join();
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+
+        System.out.println("=== FINAL DEL PROGRAMA ===");
     }
 }

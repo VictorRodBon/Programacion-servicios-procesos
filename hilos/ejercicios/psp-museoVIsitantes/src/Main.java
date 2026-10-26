@@ -33,7 +33,7 @@ public class Main {
         hc.start();
 
         try {
-            h1.join(); h2.join(); h3.join(); h4.join(); h5.join();
+            h1.join(); h2.join(); h3.join(); h4.join(); h5.join();hc.join();
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         } //hasta que no se vayan todos los visitantes no muestra esta media
