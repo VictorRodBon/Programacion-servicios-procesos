@@ -1,4 +1,4 @@
 public class Repisa {
-    int vendidos1 = 0;
-    int pasteles1 = 0;
+    int vendidos = 0;
+    int pasteles = 0;
 }
